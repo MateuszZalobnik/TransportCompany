@@ -1,5 +1,8 @@
 package Model.Model;
 
+
+import java.util.Arrays;
+
 public class Facade implements IModel {
 
 	private Order[] Orders;
@@ -14,9 +17,24 @@ public class Facade implements IModel {
 		this.Orders = Orders;
 	}
 
+	public Facade() {
+		Orders = new Order[0];
+		Users = new User[0];
+		var userForTest = new Driver() {};
+		userForTest.Id = 1;
+		userForTest.Login = "";
+		userForTest.Password = "";
+		var orderForTest = new Order();
+		orderForTest.Id = 1;
+
+		Orders = new Order[] { orderForTest };
+		Users = new User[] { userForTest };
+	}
+
 	@Override
 	public void UpdateOrder(Order Order) {
-
+		var order = this.GetOrderById(Order.Id);
+		order = Order;
 	}
 
 	@Override
@@ -36,12 +54,14 @@ public class Facade implements IModel {
 
 	@Override
 	public Order GetOrderById(int Id) {
-		return null;
+		var order = Arrays.stream(Orders).filter(o -> o.Id == Id).findFirst();
+		return order.orElse(null);
 	}
 
 	@Override
 	public User GetUserById(int Id) {
-		return null;
+		var user = Arrays.stream(Users).filter(u -> u.Id == Id).findFirst();
+		return user.orElse(null);
 	}
 
 	@Override
@@ -56,6 +76,7 @@ public class Facade implements IModel {
 
 	@Override
 	public void UpdateUser(User User) {
-
+		var user = this.GetUserById(User.Id);
+		user = User;
 	}
 }

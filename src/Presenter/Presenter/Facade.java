@@ -73,8 +73,20 @@ public class Facade implements IPresenter {
 	 * @param OrderId
 	 */
 	public void AssignDriverToOrder(int UserId, int OrderId) {
-		// TODO - implement Facade.AssignDriverToOrder
-		throw new UnsupportedOperationException();
+		IDAOFactory factory = new DAOFactory();
+		IOrderDAO orderDAO = factory.CreateOrderDAO();
+		IUserDAO driverDAO = factory.CreateUserDAO();
+
+		Order order = orderDAO.GetOrderById(OrderId);
+		Driver driver = (Driver) driverDAO.GetUserById(UserId);
+
+		order.Status = OrderStatusEnum.InProgress;
+		order.Driver = driver;
+
+		driver.Status = DriverStatusEnum.Driving;
+
+		orderDAO.UpdateOrder(order);
+		driverDAO.UpdateUser(driver);
 	}
 
 	/**
