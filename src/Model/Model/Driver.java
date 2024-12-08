@@ -2,7 +2,7 @@ package Model.Model;
 
 public class Driver extends User {
 
-	public int Status;
+	public DriverStatusEnum Status;
 	public Address LastLocation;
 
 }
