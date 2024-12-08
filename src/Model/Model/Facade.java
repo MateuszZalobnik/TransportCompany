@@ -18,8 +18,7 @@ public class Facade implements IModel {
 	}
 
 	public Facade() {
-		Orders = new Order[0];
-		Users = new User[0];
+		// TODO - for test - it will be removed
 		var userForTest = new Driver() {};
 		userForTest.Id = 1;
 		userForTest.Login = "";
