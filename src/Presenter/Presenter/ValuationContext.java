@@ -9,8 +9,7 @@ public class ValuationContext {
 	 * @param Strategy
 	 */
 	public void SetStrategy(IValuationStrategy Strategy) {
-		// TODO - implement ValuationContext.SetStrategy
-		throw new UnsupportedOperationException();
+		this.IStrategy = Strategy;
 	}
 
 	/**
@@ -18,8 +17,7 @@ public class ValuationContext {
 	 * @param Request
 	 */
 	public float DoBussinessLogic(GetValuationRequest Request) {
-		// TODO - implement ValuationContext.DoBussinessLogic
-		throw new UnsupportedOperationException();
+		return IStrategy.DoAlgorithm(Request);
 	}
 
 	/**
@@ -27,8 +25,11 @@ public class ValuationContext {
 	 * @param request
 	 */
 	public ValuationContext(GetValuationRequest request) {
-		// TODO - implement ValuationContext.ValuationContext
-		throw new UnsupportedOperationException();
+		if (request.IsManualValuation == false){
+			SetStrategy(new AutoValuationStrategy());
+		}else {
+			SetStrategy(new ManualValuationStrategy());
+		}
 	}
 
 }

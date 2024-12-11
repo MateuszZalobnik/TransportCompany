@@ -12,6 +12,6 @@ public class GetValuationRequest {
 	public int EndZipCode;
 	public String EndStreet;
 	public String EndBlockNumber;
-	private boolean IsManualValuation;
+	public boolean IsManualValuation;
 
 }
