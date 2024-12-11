@@ -4,20 +4,13 @@ import Model.Model.*;
 
 public class DAOFactory implements IDAOFactory {
 
-	private IModel Model;
-
 	@Override
 	public IUserDAO CreateUserDAO() {
-		return null;
+		return new UserDAO();
 	}
 
 	@Override
 	public IOrderDAO CreateOrderDAO() {
-		return null;
-	}
-
-	@Override
-	public void IDAOFactory() {
-
+		return new OrderDAO();
 	}
 }

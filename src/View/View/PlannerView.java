@@ -1,5 +1,7 @@
 package View.View;
 
+import Presenter.Presenter.Facade;
+
 public class PlannerView implements IDisplay {
 
 	public void DisplayOrdersAndDrivers() {
@@ -8,8 +10,8 @@ public class PlannerView implements IDisplay {
 	}
 
 	public void AssignDriverToOrder() {
-		// TODO - implement PlannerView.AssignDriverToOrder
-		throw new UnsupportedOperationException();
+		Presenter.Presenter.IPresenter presenter = new Facade();
+		presenter.AssignDriverToOrder(1,1);
 	}
 
 	@Override
