@@ -39,8 +39,9 @@ public class Facade implements IPresenter {
 	 * @param Request
 	 */
 	public float GetValuation(GetValuationRequest Request) {
-		// TODO - implement Facade.GetValuation
-		throw new UnsupportedOperationException();
+		ValuationContext valuationContext = new ValuationContext(Request);
+		float valuation = valuationContext.DoBussinessLogic(Request);
+		return valuation;
 	}
 
 	/**
