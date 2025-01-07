@@ -5,15 +5,15 @@ import Model.Model.Facade;
 
 public class UserDAO implements IUserDAO {
 
-	private IModel Model;
+	private IModel model;
 
 	public UserDAO() {
-		Model = new Facade();
+		model = new Facade();
 	}
 
 	@Override
 	public User GetUserById(int UserId) {
-		return Model.GetUserById(UserId);
+		return model.GetUserById(UserId);
 	}
 
 	@Override
@@ -23,6 +23,6 @@ public class UserDAO implements IUserDAO {
 
 	@Override
 	public void UpdateUser(User User) {
-		Model.UpdateUser(User);
+		model.UpdateUser(User);
 	}
 }

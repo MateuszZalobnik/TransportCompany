@@ -5,15 +5,15 @@ import Model.Model.Facade;
 
 public class OrderDAO implements IOrderDAO {
 
-	private IModel Model;
+	private IModel model;
 
 	public OrderDAO() {
-		Model = new Facade();
+		model = new Facade();
 	}
 
 	@Override
 	public Order GetOrderById(int OrderId) {
-		return Model.GetOrderById(OrderId);
+		return model.GetOrderById(OrderId);
 	}
 
 	@Override
@@ -23,6 +23,6 @@ public class OrderDAO implements IOrderDAO {
 
 	@Override
 	public void UpdateOrder(Order Order) {
-		Model.UpdateOrder(Order);
+		model.UpdateOrder(Order);
 	}
 }
