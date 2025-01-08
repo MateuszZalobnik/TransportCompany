@@ -1,7 +1,5 @@
 package org.Presenter.Presenter;
 
-import Model.Model.*;
-
 public class DAOFactory implements IDAOFactory {
 
 	@Override

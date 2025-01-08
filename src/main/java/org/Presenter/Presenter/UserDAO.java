@@ -1,7 +1,8 @@
 package org.Presenter.Presenter;
 
-import Model.Model.*;
-import Model.Model.Facade;
+import org.Model.Model.Facade;
+import org.Model.Model.IModel;
+import org.Model.Model.User;
 
 public class UserDAO implements IUserDAO {
 

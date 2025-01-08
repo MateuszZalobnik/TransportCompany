@@ -1,6 +1,6 @@
 package org.Presenter.Presenter;
 
-import Model.Model.*;
+import org.Model.Model.*;
 
 public class Facade implements IPresenter {
 
@@ -58,12 +58,12 @@ public class Facade implements IPresenter {
 	 * 
 	 * @param UserRole
 	 */
-	public Model.Model.Order[] GetOrderListByRole(int UserRole) {
+	public Order[] GetOrderListByRole(int UserRole) {
 		// TODO - implement Facade.GetOrderListByRole
 		throw new UnsupportedOperationException();
 	}
 
-	public Model.Model.Driver[] GetDriversList() {
+	public Driver[] GetDriversList() {
 		// TODO - implement Facade.GetDriversList
 		throw new UnsupportedOperationException();
 	}

@@ -1,6 +1,6 @@
 package org.Presenter.Presenter;
 
-import Model.Model.*;
+import org.Model.Model.Order;
 
 public interface IOrderDAO {
 

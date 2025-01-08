@@ -1,7 +1,9 @@
 package org.View.View;
 
-import Presenter.Presenter.Facade;
-import Presenter.Presenter.GetValuationRequest;
+
+import org.Presenter.Presenter.Facade;
+import org.Presenter.Presenter.GetValuationRequest;
+import org.Presenter.Presenter.IPresenter;
 
 public class ClientView implements IDisplay {
 
@@ -16,7 +18,7 @@ public class ClientView implements IDisplay {
 	}
 
 	public void ValuateOrder() {
-		Presenter.Presenter.IPresenter presenter = new Facade();
+		IPresenter presenter = new Facade();
 		GetValuationRequest request = new GetValuationRequest(); //No attributes inside
 		float valuation = presenter.GetValuation(request);
 	}

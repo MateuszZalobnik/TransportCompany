@@ -1,7 +1,9 @@
 package org.Presenter.Presenter;
 
-import Model.Model.*;
-import Model.Model.Facade;
+
+import org.Model.Model.Facade;
+import org.Model.Model.IModel;
+import org.Model.Model.Order;
 
 public class OrderDAO implements IOrderDAO {
 

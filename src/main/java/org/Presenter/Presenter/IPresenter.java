@@ -1,6 +1,8 @@
 package org.Presenter.Presenter;
 
-import Model.Model.*;
+import org.Model.Model.Driver;
+import org.Model.Model.Order;
+import org.Model.Model.User;
 
 public interface IPresenter {
 
@@ -42,9 +44,9 @@ public interface IPresenter {
 	 * 
 	 * @param UserRole
 	 */
-	Model.Model.Order[] GetOrderListByRole(int UserRole);
+	Order[] GetOrderListByRole(int UserRole);
 
-	Model.Model.Driver[] GetDriversList();
+	Driver[] GetDriversList();
 
 	/**
 	 * 

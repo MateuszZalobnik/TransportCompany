@@ -1,6 +1,8 @@
 package org.View.View;
 
-import Presenter.Presenter.Facade;
+
+import org.Presenter.Presenter.Facade;
+import org.Presenter.Presenter.IPresenter;
 
 public class PlannerView implements IDisplay {
 
@@ -10,7 +12,7 @@ public class PlannerView implements IDisplay {
 	}
 
 	public void AssignDriverToOrder() {
-		Presenter.Presenter.IPresenter presenter = new Facade();
+		IPresenter presenter = new Facade();
 		presenter.AssignDriverToOrder(1,1);
 	}
 
