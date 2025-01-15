@@ -2,6 +2,8 @@ package org.Model.Model;
 
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.*;
 
 public class Facade implements IModel {
 
@@ -38,7 +40,16 @@ public class Facade implements IModel {
 
 	@Override
 	public void AddOrder(Order Order) {
-
+		if (Orders == null) {
+			// If the array is null init it with the new order
+			Orders = new Order[] { Order };
+		} else {
+			// Create a new array with one extra place
+			Order[] newOrders = Arrays.copyOf(Orders, Orders.length + 1);
+			// Add the new order to the end of the list
+			newOrders[newOrders.length - 1] = Order;
+			Orders = newOrders;
+		}
 	}
 
 	@Override

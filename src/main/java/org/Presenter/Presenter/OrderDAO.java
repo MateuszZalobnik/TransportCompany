@@ -20,7 +20,7 @@ public class OrderDAO implements IOrderDAO {
 
 	@Override
 	public void AddOrder(Order Order) {
-
+		model.AddOrder(new Order());
 	}
 
 	@Override
