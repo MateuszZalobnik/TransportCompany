@@ -3,6 +3,7 @@ package org.Presenter.Presenter;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class ValuationContextTest {
 
@@ -31,5 +32,24 @@ class ValuationContextTest {
         // Assert
 //        assertTrue(context.getStrategy() instanceof ManualValuationStrategy);
     }
+
+    @Test
+    void testDoBusinessLogic() {
+        // Arrange
+        IValuationStrategy mockStrategy = mock(IValuationStrategy.class);
+        ValuationContext context = new ValuationContext(new GetValuationRequest());
+        context.SetStrategy(mockStrategy);
+
+        GetValuationRequest request = new GetValuationRequest();
+//        when(mockStrategy.DoAlgorithm(request)).thenReturn(42.0f);
+
+        // Act
+        float result = context.DoBusinessLogic(request);
+
+        // Assert
+//        assertEquals(42.0f, result);
+//        verify(mockStrategy, times(1)).DoAlgorithm(request);
+    }
+
 
 }
