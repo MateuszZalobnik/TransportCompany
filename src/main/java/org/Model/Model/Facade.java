@@ -18,32 +18,36 @@ public class Facade implements IModel {
 	}
 
 	public Facade() {
-		// TODO - for test - it will be removed
-		var userForTest = new Driver() {};
-		userForTest.Id = 1;
-		userForTest.Login = "";
-		userForTest.Password = "";
-		var orderForTest = new Order();
-		orderForTest.Id = 1;
-
-		Orders = new Order[] { orderForTest };
-		Users = new User[] { userForTest };
+		this.Orders = new Order[0];
+		this.Users = new User[0];
+		this.Addresses = new Address[0];
 	}
 
 	@Override
 	public void UpdateOrder(Order Order) {
 		var order = this.GetOrderById(Order.Id);
-		order = Order;
+		order.Status = Order.Status;
+		order.Driver = Order.Driver;
+		order.Date = Order.Date;
+		order.EndPoint = Order.EndPoint;
+		order.StartPoint = Order.StartPoint;
+		order.Price = Order.Price;
+		order.Weight = Order.Weight;
 	}
 
 	@Override
 	public void AddOrder(Order Order) {
-
+		this.Orders = Arrays.copyOf(this.Orders, this.Orders.length + 1);
+		this.Orders[this.Orders.length - 1] = Order;
 	}
 
 	@Override
 	public void DeleteOrder(Order Order) {
-
+		if (this.Orders != null) {
+			this.Orders = Arrays.stream(this.Orders)
+					.filter(o -> o != null && o.Id != Order.Id)
+					.toArray(Order[]::new);
+		}
 	}
 
 	@Override
@@ -53,9 +57,12 @@ public class Facade implements IModel {
 
 	@Override
 	public Order GetOrderById(int Id) {
-		var order = Arrays.stream(Orders).filter(o -> o.Id == Id).findFirst();
+		var order = Arrays.stream(Orders)
+				.filter(o -> o != null && o.Id == Id)
+				.findFirst();
 		return order.orElse(null);
 	}
+
 
 	@Override
 	public User GetUserById(int Id) {
