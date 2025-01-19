@@ -59,9 +59,11 @@ public class Facade implements IPresenter {
 	 * @param OrderId
 	 * @param Status
 	 */
-	public void SetOrderStatus(int OrderId, int Status) {
-		// TODO - implement Facade.SetOrderStatus
-		throw new UnsupportedOperationException();
+	public void SetOrderStatus(int OrderId, OrderStatusEnum Status) {
+		var orderDAO = factory.CreateOrderDAO();
+		var order = orderDAO.GetOrderById(OrderId);
+		order.Status = Status;
+		orderDAO.UpdateOrder(order);
 	}
 
 	/**
