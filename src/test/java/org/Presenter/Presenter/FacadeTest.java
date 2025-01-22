@@ -194,4 +194,45 @@ class FacadeTest {
         // Assertions to check the results
         assertEquals(1, orders.length, "There should be 3 orders for FinanceDepartment role");
     }
+
+    @ParameterizedTest
+    @CsvSource({
+            "Client, 5", // Client powinien widzieć InValuation, InProgress, Done
+            "Planner, 1", // Planner widzi tylko ReadyToAssign
+            "FinanceDepartment, 3", // FinanceDepartment widzi ReadyToAssign, InProgress, Done
+            "Driver, 0" // Driver nie widzi żadnych zamówień
+    })
+    void testGetOrderListByRole(UserRoleEnum userRole, int expectedCount) {
+        org.Model.Model.Order mockOrder1 = new org.Model.Model.Order();
+        mockOrder1.Id = 1;
+        mockOrder1.Status = OrderStatusEnum.New;
+
+        org.Model.Model.Order mockOrder2 = new org.Model.Model.Order();
+        mockOrder2.Id = 2;
+        mockOrder2.Status = OrderStatusEnum.InValuation;
+
+        org.Model.Model.Order mockOrder3 = new org.Model.Model.Order();
+        mockOrder3.Id = 3;
+        mockOrder3.Status = OrderStatusEnum.ReadyToAssign;
+
+        org.Model.Model.Order mockOrder4 = new org.Model.Model.Order();
+        mockOrder4.Id = 4;
+        mockOrder4.Status = OrderStatusEnum.InProgress;
+
+        org.Model.Model.Order mockOrder5 = new org.Model.Model.Order();
+        mockOrder5.Id = 5;
+        mockOrder5.Status = OrderStatusEnum.Done;
+
+        new Expectations() {{
+            mockModel.GetOrders();
+            result = new org.Model.Model.Order[]{
+                    mockOrder1, mockOrder2, mockOrder3, mockOrder4, mockOrder5
+            };
+        }};
+
+        org.Model.Model.Order[] filteredOrders = facade.GetOrderListByRole(userRole);
+
+        assertEquals(expectedCount, filteredOrders.length,
+                "Filtered orders count does not match expected for role: " + userRole);
+    }
 }

@@ -82,6 +82,8 @@ public class Facade implements IPresenter {
 						case Client:
 							return order.Status == OrderStatusEnum.InValuation ||
 									order.Status == OrderStatusEnum.InProgress ||
+									order.Status == OrderStatusEnum.ReadyToAssign ||
+									order.Status == OrderStatusEnum.New ||
 									order.Status == OrderStatusEnum.Done;
 						case Planner:
 							return order.Status == OrderStatusEnum.ReadyToAssign;
