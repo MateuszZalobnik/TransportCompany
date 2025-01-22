@@ -3,14 +3,17 @@ package org.Presenter.Presenter;
 import mockit.Expectations;
 import mockit.Mocked;
 import mockit.Verifications;
-import org.Model.Model.Driver;
-import org.Model.Model.DriverStatusEnum;
-import org.Model.Model.OrderStatusEnum;
+import org.Model.Model.*;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -26,12 +29,15 @@ class FacadeTest {
     @Mocked
     private IDAOFactory mockFactory;
 
+    @Mocked
+    private IModel mockModel;
+
     private Facade facade;
 
     @BeforeEach
     void setUp() {
         // Zainicjalizowanie fabryki, która zwróci zamockowany obiekt mockOrderDAO
-        facade = new Facade(mockFactory);
+        facade = new Facade(mockFactory, mockModel);
     }
 
     @Test
@@ -160,4 +166,32 @@ class FacadeTest {
         }};
     }
 
+    @Test
+    @Order(5)
+    void testGetOrderListByRole() {
+        UserRoleEnum userRole = UserRoleEnum.Planner;
+
+        org.Model.Model.Order mockOrder1 = new org.Model.Model.Order();
+        mockOrder1.Id = 1;
+        mockOrder1.Status = OrderStatusEnum.ReadyToAssign;
+
+        org.Model.Model.Order mockOrder2 = new org.Model.Model.Order();
+        mockOrder2.Id = 2;
+        mockOrder2.Status = OrderStatusEnum.InProgress;
+
+        org.Model.Model.Order mockOrder3 = new org.Model.Model.Order();
+        mockOrder3.Id = 3;
+        mockOrder3.Status = OrderStatusEnum.Done;
+
+        new Expectations() {{
+            mockModel.GetOrders();
+            result = new org.Model.Model.Order[]{mockOrder1, mockOrder2, mockOrder3};
+        }};
+
+        // Call GetOrderListByRole for FinanceDepartment
+        org.Model.Model.Order[] orders = facade.GetOrderListByRole(userRole);
+
+        // Assertions to check the results
+        assertEquals(1, orders.length, "There should be 3 orders for FinanceDepartment role");
+    }
 }

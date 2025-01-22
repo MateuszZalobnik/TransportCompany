@@ -2,6 +2,8 @@ package org.Presenter.Presenter;
 
 import org.Model.Model.*;
 
+import java.util.Arrays;
+
 public class Facade implements IPresenter {
 	private IModel model;
 	private final IDAOFactory factory;
@@ -11,8 +13,9 @@ public class Facade implements IPresenter {
 		factory = new DAOFactory(model);
 	}
 
-	public Facade(IDAOFactory factory) {
+	public Facade(IDAOFactory factory, IModel model) {
 		this.factory = factory;
+		this.model = model;
 	}
 	/**
 	 * 
@@ -70,9 +73,28 @@ public class Facade implements IPresenter {
 	 * 
 	 * @param UserRole
 	 */
-	public Order[] GetOrderListByRole(int UserRole) {
-		// TODO - implement Facade.GetOrderListByRole
-		throw new UnsupportedOperationException();
+	public Order[] GetOrderListByRole(UserRoleEnum UserRole) {
+
+		Order[] orders = model.GetOrders();
+		var filteredOrders = Arrays.stream(orders)
+				.filter(order -> {
+					switch (UserRole) {
+						case Client:
+							return order.Status == OrderStatusEnum.InValuation ||
+									order.Status == OrderStatusEnum.InProgress ||
+									order.Status == OrderStatusEnum.Done;
+						case Planner:
+							return order.Status == OrderStatusEnum.ReadyToAssign;
+						case FinanceDepartment:
+							return order.Status == OrderStatusEnum.ReadyToAssign ||
+									order.Status == OrderStatusEnum.InProgress ||
+									order.Status == OrderStatusEnum.Done;
+						default:
+							return false;
+					}
+				})
+				.toArray(Order[]::new);
+		return filteredOrders;
 	}
 
 	public Driver[] GetDriversList() {

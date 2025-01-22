@@ -79,7 +79,7 @@ public class Facade implements IModel {
 
 	@Override
 	public Order[] GetOrders() {
-		return new Order[0];
+		return getOrders();
 	}
 
 	@Override
