@@ -1,6 +1,5 @@
 package org.Presenter.Presenter;
 
-import org.Model.Model.Facade;
 import org.Model.Model.IModel;
 import org.Model.Model.User;
 
@@ -8,8 +7,8 @@ public class UserDAO implements IUserDAO {
 
 	private IModel model;
 
-	public UserDAO() {
-		model = new Facade();
+	public UserDAO(IModel model) {
+		this.model = model;
 	}
 
 	@Override

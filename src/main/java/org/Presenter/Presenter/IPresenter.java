@@ -1,8 +1,6 @@
 package org.Presenter.Presenter;
 
-import org.Model.Model.Driver;
-import org.Model.Model.Order;
-import org.Model.Model.User;
+import org.Model.Model.*;
 
 public interface IPresenter {
 
@@ -38,13 +36,13 @@ public interface IPresenter {
 	 * @param OrderId
 	 * @param Status
 	 */
-	void SetOrderStatus(int OrderId, int Status);
+	void SetOrderStatus(int OrderId, OrderStatusEnum Status);
 
 	/**
 	 * 
 	 * @param UserRole
 	 */
-	Order[] GetOrderListByRole(int UserRole);
+	Order[] GetOrderListByRole(UserRoleEnum UserRole);
 
 	Driver[] GetDriversList();
 

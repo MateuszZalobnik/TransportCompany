@@ -3,44 +3,60 @@ package org.Presenter.Presenter;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+
+import mockit.*;
 
 class ValuationContextTest {
 
+    @Mocked
+    private AutoValuationStrategy mockAutoValuationStrategy;
+
+    @Mocked
+    private ManualValuationStrategy mockManualValuationStrategy;
+
     @Test
-    void testConstructorWithAutoValuation() {
+    void testWithAutoValuation() {
         GetValuationRequest request = new GetValuationRequest();
         request.IsManualValuation = false;
 
-        IValuationStrategy mockStrategy = mock(AutoValuationStrategy.class);
-
         ValuationContext context = new ValuationContext(request);
-        context.SetStrategy(mockStrategy);
+        context.SetStrategy(mockAutoValuationStrategy);
 
-        when(mockStrategy.DoAlgorithm(request)).thenReturn(100.0f);
+        new Expectations() {{
+            mockAutoValuationStrategy.DoAlgorithm(request);
+            result = 100.0f;
+        }};
 
         float result = context.DoBusinessLogic(request);
 
         assertEquals(100.0f, result, 0.001);
-        verify(mockStrategy, times(1)).DoAlgorithm(request);
+
+        new Verifications() {{
+            mockAutoValuationStrategy.DoAlgorithm(request);
+            times = 1;
+        }};
     }
 
     @Test
-    void testConstructorWithManualValuation() {
+    void testWithManualValuation() {
         GetValuationRequest request = new GetValuationRequest();
         request.IsManualValuation = true;
 
-        IValuationStrategy mockStrategy = mock(ManualValuationStrategy.class);
-
         ValuationContext context = new ValuationContext(request);
+        context.SetStrategy(mockManualValuationStrategy);
 
-        context.SetStrategy(mockStrategy);
-
-        when(mockStrategy.DoAlgorithm(request)).thenReturn(-1.0f);
+        new Expectations() {{
+            mockManualValuationStrategy.DoAlgorithm(request);
+            result = -1.0f;
+        }};
 
         float result = context.DoBusinessLogic(request);
 
         assertEquals(-1.0f, result, 0.001);
-        verify(mockStrategy, times(1)).DoAlgorithm(request);
+
+        new Verifications() {{
+            mockManualValuationStrategy.DoAlgorithm(request);
+            times = 1;
+        }};
     }
 }
