@@ -3,22 +3,24 @@ package org.Presenter.Presenter;
 import mockit.Expectations;
 import mockit.Mocked;
 import mockit.Verifications;
+import org.ExceptionHandler;
 import org.Model.Model.*;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.TestExecutionExceptionHandler;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Tag("Facade")
-class FacadeTest {
+public class FacadeTest {
 
     @Mocked
     private IOrderDAO mockOrderDAO;
@@ -69,9 +71,34 @@ class FacadeTest {
         }};
     }
 
-
+    @ExtendWith(ExceptionHandler.class)
     @Test
     @Order(2)
+    void testPayForOrderChangesOrderStatusException() {
+        int orderId = 123;
+
+        // Mock zamówienia
+        org.Model.Model.Order mockOrder = new org.Model.Model.Order();
+        mockOrder.Id = orderId;
+        mockOrder.Status = OrderStatusEnum.New;
+
+        // Konfiguracja mocków
+        new Expectations() {{
+            mockFactory.CreateOrderDAO();
+            result = mockOrderDAO;
+
+            mockOrderDAO.GetOrderById(orderId);
+            result = mockOrder;
+        }};
+
+        facade.PayForOrder(orderId);
+
+        assertEquals(OrderStatusEnum.ReadyToAssign, mockOrder.Status, "Order status should be changed to ReadyToAssign");
+    }
+
+
+    @Test
+    @Order(3)
     void assignDriverToOrder() {
         int orderId = 123;
         int driverId = 456;
@@ -107,12 +134,13 @@ class FacadeTest {
         }};
     }
 
+    @Tag("Parametrized")
     @ParameterizedTest
     @CsvSource({
             "123, 456, ReadyToAssign, InProgress",
             "789, 101, New, InProgress"
     })
-    @Order(3)
+    @Order(4)
     void testOrderStatusTransition(int orderId, int driverId, OrderStatusEnum initialStatus, OrderStatusEnum expectedStatus) {
         org.Model.Model.Order mockOrder = new org.Model.Model.Order();
         mockOrder.Id = orderId;
@@ -139,6 +167,7 @@ class FacadeTest {
         }};
     }
 
+    @Tag("Parametrized")
     @ParameterizedTest
     @CsvSource({
             "1, New",
@@ -188,13 +217,12 @@ class FacadeTest {
             result = new org.Model.Model.Order[]{mockOrder1, mockOrder2, mockOrder3};
         }};
 
-        // Call GetOrderListByRole for FinanceDepartment
         org.Model.Model.Order[] orders = facade.GetOrderListByRole(userRole);
 
-        // Assertions to check the results
         assertEquals(1, orders.length, "There should be 3 orders for FinanceDepartment role");
     }
 
+    @Tag("Parametrized")
     @ParameterizedTest
     @CsvSource({
             "Client, 5", // Client powinien widzieć InValuation, InProgress, Done
