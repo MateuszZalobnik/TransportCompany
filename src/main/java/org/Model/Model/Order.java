@@ -6,8 +6,8 @@ public class Order {
 	public String Date;
 	public Address StartPoint;
 	public Address EndPoint;
-	public String Weight;
-	public int Price;
+	public Integer Weight;
+	public double Price;
 	public OrderStatusEnum Status;
 	public User Driver;
 

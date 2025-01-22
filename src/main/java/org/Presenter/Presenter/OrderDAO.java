@@ -9,8 +9,8 @@ public class OrderDAO implements IOrderDAO {
 
 	private IModel model;
 
-	public OrderDAO() {
-		model = new Facade();
+	public OrderDAO(IModel model) {
+		this.model = model;
 	}
 
 	@Override

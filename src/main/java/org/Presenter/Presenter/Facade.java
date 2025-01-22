@@ -3,7 +3,17 @@ package org.Presenter.Presenter;
 import org.Model.Model.*;
 
 public class Facade implements IPresenter {
+	private IModel model;
+	private final IDAOFactory factory;
 
+	public Facade() {
+		model = new org.Model.Model.Facade();
+		factory = new DAOFactory(model);
+	}
+
+	public Facade(IDAOFactory factory) {
+		this.factory = factory;
+	}
 	/**
 	 * 
 	 * @param UserId
@@ -49,9 +59,11 @@ public class Facade implements IPresenter {
 	 * @param OrderId
 	 * @param Status
 	 */
-	public void SetOrderStatus(int OrderId, int Status) {
-		// TODO - implement Facade.SetOrderStatus
-		throw new UnsupportedOperationException();
+	public void SetOrderStatus(int OrderId, OrderStatusEnum Status) {
+		var orderDAO = factory.CreateOrderDAO();
+		var order = orderDAO.GetOrderById(OrderId);
+		order.Status = Status;
+		orderDAO.UpdateOrder(order);
 	}
 
 	/**
@@ -74,7 +86,6 @@ public class Facade implements IPresenter {
 	 * @param OrderId
 	 */
 	public void AssignDriverToOrder(int UserId, int OrderId) {
-		IDAOFactory factory = new DAOFactory();
 		IOrderDAO orderDAO = factory.CreateOrderDAO();
 		IUserDAO driverDAO = factory.CreateUserDAO();
 
@@ -120,8 +131,10 @@ public class Facade implements IPresenter {
 	 * @param OrderId
 	 */
 	public void PayForOrder(int OrderId) {
-		// TODO - implement Facade.PayForOrder
-		throw new UnsupportedOperationException();
+		var orderDAO = factory.CreateOrderDAO();
+		var order = orderDAO.GetOrderById(OrderId);
+		order.Status = OrderStatusEnum.ReadyToAssign;
+		orderDAO.UpdateOrder(order);
 	}
 
 }
