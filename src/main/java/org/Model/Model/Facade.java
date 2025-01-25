@@ -53,8 +53,10 @@ public class Facade implements IModel {
 	}
 
 	@Override
-	public User AddUser() {
-		return null;
+	public User AddUser(User user) {
+		this.Users = Arrays.copyOf(this.Users, this.Users.length + 1);
+		this.Users[this.Users.length - 1] = user;
+		return user;
 	}
 
 	@Override

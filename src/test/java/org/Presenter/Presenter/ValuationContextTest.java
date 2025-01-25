@@ -1,5 +1,6 @@
 package org.Presenter.Presenter;
 
+import org.Model.Model.IModel;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,6 +15,9 @@ class ValuationContextTest {
     @Mocked
     private ManualValuationStrategy mockManualValuationStrategy;
 
+    @Mocked
+    private IModel mockModel;
+
     @Test
     void testWithAutoValuation() {
         GetValuationRequest request = new GetValuationRequest();
@@ -23,16 +27,16 @@ class ValuationContextTest {
         context.SetStrategy(mockAutoValuationStrategy);
 
         new Expectations() {{
-            mockAutoValuationStrategy.DoAlgorithm(request);
+            mockAutoValuationStrategy.DoAlgorithm(request, mockModel);
             result = 100.0f;
         }};
 
-        float result = context.DoBusinessLogic(request);
+        float result = context.DoBusinessLogic(request, mockModel);
 
         assertEquals(100.0f, result, 0.001);
 
         new Verifications() {{
-            mockAutoValuationStrategy.DoAlgorithm(request);
+            mockAutoValuationStrategy.DoAlgorithm(request, mockModel);
             times = 1;
         }};
     }
@@ -46,16 +50,16 @@ class ValuationContextTest {
         context.SetStrategy(mockManualValuationStrategy);
 
         new Expectations() {{
-            mockManualValuationStrategy.DoAlgorithm(request);
+            mockManualValuationStrategy.DoAlgorithm(request, mockModel);
             result = -1.0f;
         }};
 
-        float result = context.DoBusinessLogic(request);
+        float result = context.DoBusinessLogic(request, mockModel);
 
         assertEquals(-1.0f, result, 0.001);
 
         new Verifications() {{
-            mockManualValuationStrategy.DoAlgorithm(request);
+            mockManualValuationStrategy.DoAlgorithm(request, mockModel);
             times = 1;
         }};
     }

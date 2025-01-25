@@ -1,0 +1,9 @@
+---
+Test
+---
+!|testyfitnessefixture.TestGetValuation|
+|Date          |Weight|StartCity|StartCountry|StartZipCode|StartStreet|StartBlockNumber|EndCity|EndCountry|EndZipCode|EndStreet|EndBlockNumber|IsManualValuation|getValuation?                  |
+|2025-01-01    |10    |Poznan   |Poland      |00-001      |Main St    |12              |Berlin |Germany   |10115     |Elm St   |5             |false            |Wartość wyceny: 150.00       |
+|2025-01-02    |50    |Poznan   |Poland      |00-001      |Main St    |12              |Berlin |Germany   |10115     |Elm St   |5             |true             |Zamówienie trafiło do wyceny |
+|2025-01-03    |0     |Poznan   |Poland      |00-001      |Main St    |12              |Berlin |Germany   |10115     |Elm St   |5             |false            |Wartość wyceny: 0.00         |
+|2025-01-04    |20    |Poznan   |Poland      |00-002      |Side St    |14              |Berlin |Germany   |10116     |Oak St  |7             |false            |Wartość wyceny: 300.00        |

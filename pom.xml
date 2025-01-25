@@ -9,13 +9,20 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>23</maven.compiler.source>
-        <maven.compiler.target>23</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <mockito.version>5.15.2</mockito.version>
         <jmockit.version>1.49</jmockit.version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>org.fitnesse</groupId>
+            <artifactId>fitnesse</artifactId>
+            <version>20241207</version>
+            <scope>provided</scope>
+        </dependency>
+
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-suite-engine</artifactId>

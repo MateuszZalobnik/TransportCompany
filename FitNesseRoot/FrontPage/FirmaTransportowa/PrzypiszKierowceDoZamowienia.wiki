@@ -1,0 +1,8 @@
+---
+Test
+---
+!|testyfitnessefixture.TestAssignDriverToOrder|
+|UserId|OrderId|assignDriverToOrder?                                                                  |
+|1     |101    |Przypisano kierowcę Jan Kowalski do zamówienia 101. Status zamówienia: InProgress, Status kierowcy: Driving|
+|2     |102    |Przypisano kierowcę Anna Nowak do zamówienia 102. Status zamówienia: InProgress, Status kierowcy: Driving|
+

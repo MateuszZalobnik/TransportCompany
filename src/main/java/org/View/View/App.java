@@ -1,6 +1,9 @@
 
 package org.View.View;
 
+import org.Model.Model.*;
+import org.Presenter.Presenter.Facade;
+
 public class App {
 
 	private IDisplay[] view;

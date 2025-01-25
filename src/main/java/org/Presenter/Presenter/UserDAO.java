@@ -18,7 +18,7 @@ public class UserDAO implements IUserDAO {
 
 	@Override
 	public void AddUser(User User) {
-
+		model.AddUser(User);
 	}
 
 	@Override

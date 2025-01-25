@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class Facade implements IPresenter {
 	private IModel model;
-	private final IDAOFactory factory;
+	public final IDAOFactory factory;
 
 	public Facade() {
 		model = new org.Model.Model.Facade();
@@ -53,7 +53,7 @@ public class Facade implements IPresenter {
 	 */
 	public float GetValuation(GetValuationRequest Request) {
 		ValuationContext valuationContext = new ValuationContext(Request);
-		float valuation = valuationContext.DoBusinessLogic(Request);
+		float valuation = valuationContext.DoBusinessLogic(Request, model);
 		return valuation;
 	}
 

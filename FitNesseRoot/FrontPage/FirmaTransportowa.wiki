@@ -1,0 +1,8 @@
+---
+Suite
+---
+!1 Test suite ${PAGE_NAME}
+!contents -R2 -g -p -f -h
+
+"Testy akceptacyjne systemu dla firmy transportowej"
+!path D:\school\BD\IO_ProjektV2\target\classes

@@ -1,5 +1,7 @@
 package org.Presenter.Presenter;
 
+import org.Model.Model.IModel;
+
 public class ValuationContext {
 
 	private IValuationStrategy IStrategy;
@@ -16,8 +18,8 @@ public class ValuationContext {
 	 * 
 	 * @param Request
 	 */
-	public float DoBusinessLogic(GetValuationRequest Request) {
-		return IStrategy.DoAlgorithm(Request);
+	public float DoBusinessLogic(GetValuationRequest Request, IModel model) {
+		return IStrategy.DoAlgorithm(Request, model);
 	}
 
 	/**

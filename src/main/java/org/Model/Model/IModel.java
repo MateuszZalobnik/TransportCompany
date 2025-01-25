@@ -20,7 +20,7 @@ public interface IModel {
 	 */
 	void DeleteOrder(Order Order);
 
-	User AddUser();
+	User AddUser(User user);
 
 	/**
 	 * 
