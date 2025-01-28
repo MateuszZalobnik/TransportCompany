@@ -1,0 +1,5 @@
+!|testyfitnessefixture.TestGetOrderStatus|
+|OrderId|NewStatus       |setOrderStatus?                        |
+|101    |InProgress      |Status zamówienia 101 zmieniono na InProgress.|
+|102    |Done            |Status zamówienia 102 zmieniono na Done.      |
+|103    |ReadyToAssign   |Status zamówienia 103 zmieniono na ReadyToAssign.|
