@@ -4,8 +4,6 @@ import fit.Fixture;
 import org.Model.Model.*;
 import org.Presenter.Presenter.Facade;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class SetUp extends Fixture {
     static Facade app;
