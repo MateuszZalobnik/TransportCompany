@@ -5,4 +5,4 @@ Suite
 !contents -R2 -g -p -f -h
 
 "Testy akceptacyjne systemu dla firmy transportowej"
-!path C:\Users\cinek\Documents\TransportCompany\target\classes
+!path D:\school\BD\IO_ProjektV2\target\classes

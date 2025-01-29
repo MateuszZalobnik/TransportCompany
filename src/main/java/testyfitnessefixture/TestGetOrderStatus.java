@@ -8,6 +8,14 @@ public class TestGetOrderStatus extends ColumnFixture {
     public int OrderId;
     public String NewStatus;
 
+    public void setOrderId(int orderId) {
+        this.OrderId = orderId;
+    }
+
+    public void setNewStatus(String newStatus) {
+        this.NewStatus = newStatus;
+    }
+
     public String setOrderStatus() {
         try {
             var orderDAO = SetUp.app.factory.CreateOrderDAO();

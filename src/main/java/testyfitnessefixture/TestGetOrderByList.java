@@ -8,7 +8,11 @@ import org.Model.Model.UserRoleEnum;
 import java.util.Arrays;
 
 public class TestGetOrderByList extends ColumnFixture {
-    public String UserRole; // Rola użytkownika jako String
+    public String UserRole;
+
+    public void setUserRole(String UserRole) {
+        this.UserRole = UserRole;
+    }
 
     public int[] getOrderIdsByRole() {
         try {

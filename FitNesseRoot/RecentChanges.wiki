@@ -1,3 +1,8 @@
-|FrontPage.FirmaTransportowa||19:04:35 Tue, Jan 28, 2025|
+|FrontPage.FirmaTransportowa.PobranieZamowienPoZmianieStatusu||15:11:57 Wed, Jan 29, 2025|
+|FrontPage.FirmaTransportowa.PobranieZamowienPoPrzypisaniuDoKierowcy||15:06:44 Wed, Jan 29, 2025|
+|FrontPage.FirmaTransportowa.test1234||15:03:48 Wed, Jan 29, 2025|
+|FrontPage.FirmaTransportowa.PrzypiszKierowceDoZamowienia||15:03:09 Wed, Jan 29, 2025|
+|FrontPage.FirmaTransportowa.TestPelnegoProcesuZamowienia||14:39:52 Wed, Jan 29, 2025|
+|FrontPage.FirmaTransportowa.TestowanieZmianyStatusuZamowienia||14:32:58 Wed, Jan 29, 2025|
+|FrontPage.FirmaTransportowa||19:48:22 Tue, Jan 28, 2025|
 |FrontPage.FirmaTransportowa.PrzypiszKierowceDoZamowienia.TestowaniePobieraniaListyZamownienDoRol||19:52:42 Mon, Jan 27, 2025|
-|FrontPage.FirmaTransportowa.TestowanieZmianyStatusuZamowienia||19:52:05 Mon, Jan 27, 2025|

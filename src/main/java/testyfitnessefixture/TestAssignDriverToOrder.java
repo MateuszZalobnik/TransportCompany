@@ -8,7 +8,13 @@ import org.Model.Model.OrderStatusEnum;
 public class TestAssignDriverToOrder extends ColumnFixture {
     public int UserId;
     public int OrderId;
+    public void setUserId(int userId) {
+        this.UserId = userId;
+    }
 
+    public void setOrderId(int orderId) {
+        this.OrderId = orderId;
+    }
     public String assignDriverToOrder() {
         try {
             var orderDAO = SetUp.app.factory.CreateOrderDAO();
